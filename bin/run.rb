@@ -8,13 +8,14 @@ person = coding.login?
 
 coding.user = person
 
+
 coding.home
-movies = coding.browse
-Movie.good_reviews(movies)
-coding.sure?(movies)
-Movie.bad_reviews(movies)
-sleep 4
-coding.watch_exit
+coding.browse
+# Movie.good_reviews(movies)
+# coding.sure?(movies)
+# Movie.bad_reviews(movies)
+# sleep 4
+# coding.watch_exit
 
 
 

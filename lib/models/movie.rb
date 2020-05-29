@@ -1,8 +1,17 @@
+require 'tty-prompt'
+
 class Movie < ActiveRecord::Base
     
     attr_reader :movie_id
     # belongs_to :genre
     # has_many :reviews
+    @@prompt = TTY::Prompt.new
+    # Prompt
+    ## Allows for use of TTY::Prompt across multiple Classes
+    def self.prompts
+        @@prompt
+    end
+
     def self.movies
      Movie.all.map {|movie| movie.movie_name}
         
@@ -19,7 +28,9 @@ class Movie < ActiveRecord::Base
 
     def self.good_reviews(name)
         movie = Movie.movie_lookup(name)
-      10.times {Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(6..10))}
+        x = Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(6..10))
+        self.prompts.say("#{x.rating}, #{x.post}", color: :blue)
+
     end
 
     def self.find_genre(name)
@@ -34,7 +45,8 @@ class Movie < ActiveRecord::Base
              "They were... give them back!"]
         movie = Movie.movie_lookup(name)
         if a.include?(Movie.find_genre(name))
-      10.times {Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(5), post: b.sample )}
+        x = Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(5), post: b.sample )
+        self.prompts.say("#{x.rating}, #{x.post}", color: :red)
         else
             Movie.good_reviews(name)
         end
