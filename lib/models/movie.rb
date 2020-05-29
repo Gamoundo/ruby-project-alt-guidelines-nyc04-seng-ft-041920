@@ -28,7 +28,8 @@ class Movie < ActiveRecord::Base
 
     def self.good_reviews(name)
         movie = Movie.movie_lookup(name)
-        x = Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(6..10))
+        o = ["this was amazing", "not the worst", "have to tell my friend about this", "Beautiful!!!"]
+        x = Review.create(user_id: User.all.sample.id, movie_id: movie.id, rating: rand(6..10), post: o.sample)
         self.prompts.say("#{x.rating}, #{x.post}", color: :blue)
 
     end

@@ -15,10 +15,9 @@ class Coding
 
         if login == "login"
             something = User.login
-             puts "Welcome back"
             something
         elsif login == "register"
-            puts "Enjoy your stay"
+            
             User.register
         end
     end
@@ -44,7 +43,7 @@ class Coding
         sure = prompt.select("you are choosing #{movie_name}?", ["yes", "no"])
             # binding.pry
         if sure == "yes" && a.include?(Movie.find_genre(movie_name))
-            experience = ["lose an arm", "lose an eye", "come out unscathe", "gain wealth", "lose a limb"]
+            experience = ["lose an arm", "lose an eye", "come out unscathe", "gain wealth", "lose a limb", "papercut", "lose your home", "grow 3 inches", "Cured of anything"]
            
             user.status=(experience[rand(experience.count - 1)])
             # binding.pry

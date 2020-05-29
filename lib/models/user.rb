@@ -13,11 +13,12 @@ class User < ActiveRecord::Base
         if User.find_by(user_name: name)
         login = User.find_by(user_name: name)
         @@status = []
-        
+        puts "welcome back"
         return login
         elsif !User.find_by(user_name: name)
             puts "that username doesn't exist"
-            self.login
+            coding = Coding.new()
+            person = coding.login?
         end
     end
     
@@ -27,9 +28,12 @@ class User < ActiveRecord::Base
         
         if User.find_by(user_name: name)
             puts "that username is still in use"
-            self.register
+            # self.register
+            coding = Coding.new()
+            person = coding.login?
             
         elsif !User.find_by(user_name: name)
+            puts "Enjoy your stay"
             User.create(user_name: name)
         end
     end
